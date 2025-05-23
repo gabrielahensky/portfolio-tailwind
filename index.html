@@ -3,9 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Portfolio Tailwind CSS</title>
+    <link href="src/output.css" rel="stylesheet">
 </head>
 <body>
     
+<!-- Hero section start -->
+<section id="hero" class="pt-36 bg-gradient-to-b from-neutral to-gray-800 text-white">
+  <div class="container mx-auto px-4">
+    <div class="flex flex-wrap-reverse lg:flex-nowrap items-center">
+      
+      <!-- Text -->
+        <div class="w-full lg:w-1/2 self-center text-center lg:text-left">
+            <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight mb-6">
+                Hi, I'm <span class="text-primary drop-shadow-md">Gabriela Hensky Salaras</span>
+            </h1>
+        <p class="text-lg sm:text-xl text-gray-300 mb-4 max-w-2xl mx-auto lg:mx-0">
+          Full Stack Developer with a creative edge in video editing and solid Laravel experience.
+        </p>
+        <p class="text-md text-gray-400 mb-8 max-w-xl mx-auto lg:mx-0">
+          Blending code and creativity to build digital experiences — from recruitment systems to invoice tracking tools.
+        </p>
+        <a href="#projects" class="bg-primary hover:bg-secondary text-white py-3 px-6 rounded-full transition duration-300 shadow-lg inline-block">
+          View My Projects
+        </a>
+      </div>
+
+      <!-- Image with container -->
+      <div class="w-full lg:w-1/2 mb-12 lg:mb-0 flex justify-center">
+        <div class="bg-neutral p-4 rounded-xl shadow-xl">
+          <img src="src/image.jpg" alt="Gabriela Hensky Salaras" class="rounded-lg max-w-xs sm:max-w-sm lg:max-w-sm">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- Hero section end -->
+
+<!-- About me -->
+<section id="about" class="py-24 bg-base-100 text-neutral">
+  <div class="container mx-auto px-4">
+    <div class="w-full lg:w-3/4 mx-auto text-center">
+      <h2 class="text-3xl sm:text-4xl font-bold mb-6">About Me</h2>
+      <p class="text-lg leading-relaxed mb-4">
+        I'm <strong>Gabriela Hensky Salaras</strong>, a Full Stack Developer based in Semarang, Indonesia, with a passion for blending technology and creativity. I specialize in building web applications using Laravel and PHP, and I also enjoy crafting compelling visual content through video editing.
+      </p>
+      <p class="text-md text-gray-600">
+        I’ve developed systems like recruitment platforms and invoice tracking tools, and currently contribute as a Marketing Specialist at Digitamaze. With a strong commitment to learning and innovation, I'm always ready for new challenges and opportunities to grow in the tech industry.
+      </p>
+    </div>
+  </div>
+</section>
+<!-- About me END -->
+
 </body>
 </html>
