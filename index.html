@@ -1,155 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio Tailwind CSS</title>
-  <link href="src/output.css" rel="stylesheet" />
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gabriela Hensky Salaras | Portfolio</title>
+    <meta
+      name="description"
+      content="Portfolio of Gabriela Hensky Salaras, Full Stack Developer specialized in Laravel and scalable web applications."
+    />
+    <link href="src/output.css" rel="stylesheet" />
+  </head>
 
-  <!-- Hero Section Start -->
-  <section id="hero" class="pt-36 bg-gradient-to-b from-neutral to-gray-800 text-white">
-    <div class="container mx-auto px-4">
-      <div class="flex flex-wrap-reverse lg:flex-nowrap items-center">
+  <body class="bg-base-100 text-neutral font-sans leading-relaxed">
+    <!-- Hero Section Start -->
+    <section id="hero" class="pt-36 bg-gradient-to-b from-neutral to-gray-800 text-white">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-wrap-reverse lg:flex-nowrap items-center">
+          <!-- Hero Text -->
+          <div class="w-full lg:w-1/2 self-center text-center lg:text-left">
+            <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight mb-6">
+              Hi, I'm <span class="text-primary drop-shadow-md">Gabriela Hensky Salaras</span>
+            </h1>
+            <p class="text-lg sm:text-xl text-gray-300 mb-4 max-w-2xl mx-auto lg:mx-0">
+              Full Stack Developer with solid Laravel experience and passion for building scalable web applications.
+            </p>
+            <p class="text-md text-gray-400 mb-8 max-w-xl mx-auto lg:mx-0">
+              Creating seamless digital experiences — from recruitment platforms to invoice tracking tools.
+            </p>
+            <a
+              href="#projects"
+              class="bg-primary hover:bg-secondary focus:outline-none focus:ring-4 focus:ring-primary/50 text-white py-3 px-6 rounded-full transition duration-300 shadow-lg inline-block"
+              aria-label="View my projects"
+            >
+              View My Projects
+            </a>
+          </div>
 
-        <!-- Text -->
-        <div class="w-full lg:w-1/2 self-center text-center lg:text-left">
-          <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight mb-6">
-            Hi, I'm <span class="text-primary drop-shadow-md">Gabriela Hensky Salaras</span>
-          </h1>
-          <p class="text-lg sm:text-xl text-gray-300 mb-4 max-w-2xl mx-auto lg:mx-0">
-            Full Stack Developer with solid Laravel experience and passion for building scalable web applications.
+          <!-- Hero Image -->
+          <div class="w-full lg:w-1/2 mb-12 lg:mb-0 flex justify-center">
+            <div class="bg-neutral p-4 rounded-xl shadow-xl max-w-sm">
+              <img
+                src="src/image.jpg"
+                alt="Gabriela Hensky Salaras"
+                class="rounded-lg w-full h-auto object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Hero Section End -->
+
+    <!-- About Me Section -->
+    <section id="about" class="py-24 bg-base-100 text-neutral">
+      <div class="container mx-auto px-4">
+        <div class="w-full lg:w-3/4 mx-auto text-center">
+          <h2 class="text-3xl sm:text-4xl font-bold mb-6">About Me</h2>
+          <p class="text-lg leading-relaxed mb-4">
+            I'm <strong>Gabriela Hensky Salaras</strong>, a Full Stack Developer based in Semarang, Indonesia. I
+            specialize in building web applications using Laravel and PHP with clean, maintainable code and best
+            practices.
           </p>
-          <p class="text-md text-gray-400 mb-8 max-w-xl mx-auto lg:mx-0">
-            Creating seamless digital experiences — from recruitment platforms to invoice tracking tools.
+          <p class="text-md text-gray-600">
+            I have experience developing recruitment platforms and invoice tracking systems, and I am passionate about
+            continuously learning and improving my skills to deliver high-quality solutions.
           </p>
-          <a href="#projects" class="bg-primary hover:bg-secondary text-white py-3 px-6 rounded-full transition duration-300 shadow-lg inline-block">
-            View My Projects
-          </a>
-        </div>
-
-        <!-- Image -->
-        <div class="w-full lg:w-1/2 mb-12 lg:mb-0 flex justify-center">
-          <div class="bg-neutral p-4 rounded-xl shadow-xl">
-            <img src="src/image.jpg" alt="Gabriela Hensky Salaras" class="rounded-lg max-w-xs sm:max-w-sm lg:max-w-sm" />
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-  <!-- Hero Section End -->
-
-  <!-- About Me Section -->
-  <section id="about" class="py-24 bg-base-100 text-neutral">
-    <div class="container mx-auto px-4">
-      <div class="w-full lg:w-3/4 mx-auto text-center">
-        <h2 class="text-3xl sm:text-4xl font-bold mb-6">About Me</h2>
-        <p class="text-lg leading-relaxed mb-4">
-          I'm <strong>Gabriela Hensky Salaras</strong>, a Full Stack Developer based in Semarang, Indonesia. I specialize in building web applications using Laravel and PHP with clean, maintainable code and best practices.
-        </p>
-        <p class="text-md text-gray-600">
-          I have experience developing recruitment platforms and invoice tracking systems, and I am passionate about continuously learning and improving my skills to deliver high-quality solutions.
-        </p>
-      </div>
-    </div>
-  </section>
-  <!-- About Me End -->
-
-  <!-- Skills Section -->
-  <section id="skills" class="py-24 bg-neutral text-white">
-    <div class="container mx-auto px-4">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl sm:text-4xl font-bold mb-4">My Skills</h2>
-        <p class="text-md text-gray-300">Technologies and tools I work with:</p>
-      </div>
-
-      <div class="max-w-4xl mx-auto">
-        <div class="grid grid-cols-4 sm:grid-cols-4 gap-8 justify-center">
-
-          <div class="flex flex-col items-center">
-            <img src="https://cdn.simpleicons.org/laravel/FF2D20" alt="Laravel" class="w-12 h-12 mb-2" />
-            <p class="text-sm">Laravel</p>
-          </div>
-
-          <div class="flex flex-col items-center">
-            <img src="https://cdn.simpleicons.org/php/777BB4" alt="PHP" class="w-12 h-12 mb-2" />
-            <p class="text-sm">PHP</p>
-          </div>
-
-          <div class="flex flex-col items-center">
-            <img src="https://cdn.simpleicons.org/tailwindcss/06B6D4" alt="Tailwind CSS" class="w-12 h-12 mb-2" />
-            <p class="text-sm">Tailwind CSS</p>
-          </div>
-
-          <div class="flex flex-col items-center">
-            <img src="https://cdn.simpleicons.org/html5/E34F26" alt="HTML" class="w-12 h-12 mb-2" />
-            <p class="text-sm">HTML</p>
-          </div>
-
-          <div class="flex flex-col items-center">
-            <img src="https://cdn.simpleicons.org/css3/1572B6" alt="CSS" class="w-12 h-12 mb-2" />
-            <p class="text-sm">CSS</p>
-          </div>
-
-          <div class="flex flex-col items-center">
-            <img src="https://cdn.simpleicons.org/javascript/F7DF1E" alt="JavaScript" class="w-12 h-12 mb-2" />
-            <p class="text-sm">JavaScript</p>
-          </div>
-
-          <div class="flex flex-col items-center">
-            <img src="https://cdn.simpleicons.org/github/FFFFFF" alt="GitHub" class="w-12 h-12 mb-2" />
-            <p class="text-sm">GitHub</p>
-          </div>
-
         </div>
       </div>
-    </div>
-  </section>
-  <!-- Skills Section End -->
+    </section>
+    <!-- About Me End -->
 
-   <!-- Projects Section -->
-<section id="projects" class="py-24 bg-base-100 text-neutral">
-  <div class="container mx-auto px-4">
-    <h2 class="text-3xl sm:text-4xl font-bold mb-12 text-center">My Projects</h2>
+    <!-- Skills Section -->
+    <section id="skills" class="py-24 bg-neutral text-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl sm:text-4xl font-bold mb-4">My Skills</h2>
+          <p class="text-md text-gray-300">Technologies and tools I work with:</p>
+        </div>
 
-    <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
+        <div class="max-w-4xl mx-auto">
+          <div class="grid grid-cols-4 sm:grid-cols-7 gap-8 justify-center">
+            <!-- Skill Item -->
+            <div class="flex flex-col items-center" aria-label="Skill Laravel">
+              <img src="https://cdn.simpleicons.org/laravel/FF2D20" alt="Laravel logo" class="w-12 h-12 mb-2" />
+              <p class="text-sm">Laravel</p>
+            </div>
 
-      <!-- Project Item -->
-      <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-        <img src="src/project1.jpg" alt="Project 1" class="w-full h-48 object-cover" />
-        <div class="p-6">
-          <h3 class="text-xl font-semibold mb-2">Recruitment Platform</h3>
-          <p class="text-gray-600 mb-4">A web app to manage recruitment processes with Laravel backend and Bootstrap frontend.</p>
+            <div class="flex flex-col items-center" aria-label="Skill PHP">
+              <img src="https://cdn.simpleicons.org/php/777BB4" alt="PHP logo" class="w-12 h-12 mb-2" />
+              <p class="text-sm">PHP</p>
+            </div>
+
+            <div class="flex flex-col items-center" aria-label="Skill Tailwind CSS">
+              <img src="https://cdn.simpleicons.org/tailwindcss/06B6D4" alt="Tailwind CSS logo" class="w-12 h-12 mb-2" />
+              <p class="text-sm">Tailwind CSS</p>
+            </div>
+
+            <div class="flex flex-col items-center" aria-label="Skill HTML5">
+              <img src="https://cdn.simpleicons.org/html5/E34F26" alt="HTML5 logo" class="w-12 h-12 mb-2" />
+              <p class="text-sm">HTML5</p>
+            </div>
+
+            <div class="flex flex-col items-center" aria-label="Skill CSS3">
+              <img src="https://cdn.simpleicons.org/css3/1572B6" alt="CSS3 logo" class="w-12 h-12 mb-2" />
+              <p class="text-sm">CSS3</p>
+            </div>
+
+            <div class="flex flex-col items-center" aria-label="Skill JavaScript">
+              <img src="https://cdn.simpleicons.org/javascript/F7DF1E" alt="JavaScript logo" class="w-12 h-12 mb-2" />
+              <p class="text-sm">JavaScript</p>
+            </div>
+
+            <div class="flex flex-col items-center" aria-label="Skill GitHub">
+              <img src="https://cdn.simpleicons.org/github/FFFFFF" alt="GitHub logo" class="w-12 h-12 mb-2" />
+              <p class="text-sm">GitHub</p>
+            </div>
+          </div>
         </div>
       </div>
+    </section>
+    <!-- Skills Section End -->
 
-      <!-- Project Item -->
-      <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-        <img src="src/project2.jpg" alt="Project 2" class="w-full h-48 object-cover" />
-        <div class="p-6">
-          <h3 class="text-xl font-semibold mb-2">Invoice Tracker</h3>
-          <p class="text-gray-600 mb-4">A tool to track invoices and payments, built with Laravel and Bootstrap.</p>
+    <!-- Projects Section -->
+    <section id="projects" class="py-24 bg-base-100 text-neutral">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl sm:text-4xl font-bold mb-12 text-center">My Projects</h2>
+
+        <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
+          <!-- Project 1 -->
+          <article
+            class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+            tabindex="0"
+            aria-labelledby="project1-title"
+            aria-describedby="project1-desc"
+          >
+            <img
+              src="src/project1.jpg"
+              alt="Screenshot of Recruitment Platform project"
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-6">
+              <h3 id="project1-title" class="text-xl font-semibold mb-2">Recruitment Platform</h3>
+              <p id="project1-desc" class="text-gray-600 mb-4">
+                A web app to manage recruitment processes with Laravel backend and Bootstrap frontend.
+              </p>
+            </div>
+          </article>
+
+          <!-- Project 2 -->
+          <article
+            class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+            tabindex="0"
+            aria-labelledby="project2-title"
+            aria-describedby="project2-desc"
+          >
+            <img
+              src="src/project2.jpg"
+              alt="Screenshot of Invoice Tracker project"
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-6">
+              <h3 id="project2-title" class="text-xl font-semibold mb-2">Invoice Tracker</h3>
+              <p id="project2-desc" class="text-gray-600 mb-4">
+                A tool to track invoices and payments, built with Laravel and Bootstrap.
+              </p>
+            </div>
+          </article>
+
+          <!-- Project 3 -->
+          <article
+            class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+            tabindex="0"
+            aria-labelledby="project3-title"
+            aria-describedby="project3-desc"
+          >
+            <img
+              src="src/project3.jpg"
+              alt="Screenshot of Cash Management System project"
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-6">
+              <h3 id="project3-title" class="text-xl font-semibold mb-2">Cash Management System</h3>
+              <p id="project3-desc" class="text-gray-600 mb-4">
+                I collaborated with a friend to develop a custom web-based cash management system for local RT/RW
+                (neighborhood administrative units). My role was as a Full Stack Developer, responsible for both
+                front-end and back-end development. Built with Laravel and Tailwind.
+              </p>
+            </div>
+          </article>
         </div>
       </div>
-
-      <!-- Project Item -->
-      <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-        <img src="src/project3.jpg" alt="Project 3" class="w-full h-48 object-cover" />
-        <div class="p-6">
-          <h3 class="text-xl font-semibold mb-2">Cash Management System</h3>
-          <p class="text-gray-600 mb-4">I collaborated with a friend to develop a custom web-based cash management system for local RT/RW (neighborhood administrative units). My role was as a Full Stack Developer, responsible for both the front-end and back-end development of the system.
-            Built with Laravel and Tailwind.</p>
-        </div>
-      </div>
-
-      <!-- Tambah proyek lainnya... -->
-
-    </div>
-  </div>
-</section>
-
-
-</body>
+    </section>
+    <!-- Projects Section End -->
+  </body>
 </html>
