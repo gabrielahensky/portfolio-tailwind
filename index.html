@@ -85,24 +85,33 @@
       }
       .swiper-button-next,
       .swiper-button-prev {
-        color: #3b82f6;
+        color: #3b82f6 !important;
         background: white;
         width: 50px;
         height: 50px;
         border-radius: 50%;
         box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         transition: all 0.3s ease;
+        margin-top: 0 !important;
+        top: 50% !important;
+        transform: translateY(-50%);
       }
       .swiper-button-next:hover,
       .swiper-button-prev:hover {
-        background: #3b82f6;
-        color: white;
-        transform: scale(1.1);
+        background: #3b82f6 !important;
+        color: white !important;
+        transform: translateY(-50%) scale(1.1);
       }
       .swiper-button-next::after,
       .swiper-button-prev::after {
-        font-size: 18px;
+        font-size: 18px !important;
         font-weight: bold;
+      }
+      
+      /* Ensure buttons stay visible */
+      .swiper-button-disabled {
+        opacity: 0.5 !important;
+        pointer-events: none;
       }
       
       /* Project Counter */
@@ -117,6 +126,7 @@
         font-size: 14px;
         font-weight: 600;
         backdrop-filter: blur(10px);
+        z-index: 10;
       }
     </style>
   </head>
@@ -172,7 +182,7 @@
             </div>
             
             <h1 class="text-5xl lg:text-6xl font-bold font-display mb-6 leading-tight">
-              Hi, I'm <span class="gradient-text">Gabriela Hensky Salaras</span>
+              Hi, I'm <span class="gradient-text">Gabriela</span>
               <br>Full Stack Developer
             </h1>
             
@@ -229,7 +239,7 @@
             
             <div class="grid grid-cols-2 gap-6 pt-6">
               <div class="text-center p-6 bg-gray-50 rounded-2xl">
-                <div class="text-3xl font-bold text-primary-600 mb-2">3+</div>
+                <div class="text-3xl font-bold text-primary-600 mb-2">2+</div>
                 <div class="text-gray-600 font-medium">Years Experience</div>
               </div>
               <div class="text-center p-6 bg-gray-50 rounded-2xl">
@@ -341,28 +351,12 @@
           <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
             Here are some of the projects I've worked on that showcase my skills and experience
           </p>
-          
-          <!-- Project Categories Filter -->
-          <div class="flex flex-wrap justify-center gap-4 mb-12">
-            <button class="filter-btn active px-6 py-2 rounded-full bg-primary-600 text-white font-medium transition-all duration-200" data-filter="all">
-              All Projects
-            </button>
-            <button class="filter-btn px-6 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-primary-100 hover:text-primary-700 font-medium transition-all duration-200" data-filter="web">
-              Web Apps
-            </button>
-            <button class="filter-btn px-6 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-primary-100 hover:text-primary-700 font-medium transition-all duration-200" data-filter="mobile">
-              Mobile Apps
-            </button>
-            <button class="filter-btn px-6 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-primary-100 hover:text-primary-700 font-medium transition-all duration-200" data-filter="api">
-              API Projects
-            </button>
-          </div>
         </div>
 
         <!-- Swiper Container -->
         <div class="swiper projectSwiper relative">
           <div class="project-counter">
-            <span id="currentSlide">1</span> / <span id="totalSlides">6</span>
+            <span id="currentSlide">1</span> / <span id="totalSlides">4</span>
           </div>
           
           <div class="swiper-wrapper">
@@ -517,84 +511,8 @@
                 </div>
               </div>
             </div>
-
-            <!-- Project 5 - Mobile App API 
-            <div class="swiper-slide" data-category="api mobile">
-              <div class="group bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2 mx-4">
-                <div class="relative overflow-hidden">
-                  <img src="/placeholder.svg?height=250&width=400" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500" alt="Mobile App API" />
-                  <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div class="absolute top-4 left-4">
-                    <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-medium">API</span>
-                  </div>
-                  <div class="absolute bottom-4 left-4 right-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 opacity-0 group-hover:opacity-100">
-                    <div class="flex gap-2">
-                      <button class="bg-white text-gray-900 px-4 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors duration-200 flex-1">
-                        View Details
-                      </button>
-                      <a href="#" class="bg-primary-600 text-white px-4 py-2 rounded-full font-semibold hover:bg-primary-700 transition-colors duration-200">
-                        Documentation
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div class="p-8">
-                  <h3 class="text-2xl font-bold font-display mb-3 text-gray-900">Food Delivery API</h3>
-                  <p class="text-gray-600 mb-4 leading-relaxed">
-                    RESTful API for food delivery mobile app with real-time tracking, payment processing, and restaurant management.
-                  </p>
-                  <div class="flex flex-wrap gap-2 mb-4">
-                    <span class="px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-sm font-medium">Laravel</span>
-                    <span class="px-3 py-1 bg-accent-100 text-accent-700 rounded-full text-sm font-medium">REST API</span>
-                    <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">WebSocket</span>
-                  </div>
-                  <div class="flex items-center justify-between text-sm text-gray-500">
-                    <span>🗓️ Completed: Mar 2024</span>
-                    <span>📱 Mobile Backend</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            -->
-            <!-- Project 6 - Learning Management System 
-            <div class="swiper-slide" data-category="web">
-              <div class="group bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2 mx-4">
-                <div class="relative overflow-hidden">
-                  <img src="/placeholder.svg?height=250&width=400" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500" alt="Learning Management System" />
-                  <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div class="absolute top-4 left-4">
-                    <span class="bg-indigo-500 text-white px-3 py-1 rounded-full text-sm font-medium">Education</span>
-                  </div>
-                  <div class="absolute bottom-4 left-4 right-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 opacity-0 group-hover:opacity-100">
-                    <div class="flex gap-2">
-                      <button class="bg-white text-gray-900 px-4 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors duration-200 flex-1">
-                        View Details
-                      </button>
-                      <a href="#" class="bg-primary-600 text-white px-4 py-2 rounded-full font-semibold hover:bg-primary-700 transition-colors duration-200">
-                        Live Demo
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div class="p-8">
-                  <h3 class="text-2xl font-bold font-display mb-3 text-gray-900">Learning Management System</h3>
-                  <p class="text-gray-600 mb-4 leading-relaxed">
-                    Complete LMS platform with course management, student progress tracking, and interactive learning modules.
-                  </p>
-                  <div class="flex flex-wrap gap-2 mb-4">
-                    <span class="px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-sm font-medium">Laravel</span>
-                    <span class="px-3 py-1 bg-accent-100 text-accent-700 rounded-full text-sm font-medium">Livewire</span>
-                    <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">Video Streaming</span>
-                  </div>
-                  <div class="flex items-center justify-between text-sm text-gray-500">
-                    <span>🗓️ Completed: Apr 2024</span>
-                    <span>🎓 Educational</span>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
-          -->
+          
           <!-- Navigation buttons -->
           <div class="swiper-button-next"></div>
           <div class="swiper-button-prev"></div>
@@ -667,18 +585,6 @@
                 <p class="text-primary-100">linkedin.com/in/gabrielahenskysalaras</p>
               </div>
             </div>
-
-            <!-- Quick Contact Buttons -->
-            <div class="pt-6 space-y-4">
-              <a href="mailto:gabrielahensky.dev@gmail.com?subject=Project Inquiry&body=Hi Gabriela,%0D%0A%0D%0AI'm interested in discussing a project with you.%0D%0A%0D%0AProject details:%0D%0A- %0D%0A- %0D%0A- %0D%0A%0D%0APlease let me know your availability.%0D%0A%0D%0AThank you!" 
-                 class="w-full bg-white text-primary-600 py-3 px-6 rounded-xl font-semibold hover:bg-gray-100 transition-colors duration-200 text-center block">
-                📧 Send Email Directly
-              </a>
-              <a href="https://wa.me/6281234567890?text=Hi%20Gabriela,%20I'm%20interested%20in%20working%20with%20you%20on%20a%20project." 
-                 class="w-full bg-green-500 text-white py-3 px-6 rounded-xl font-semibold hover:bg-green-600 transition-colors duration-200 text-center block">
-                💬 WhatsApp Message
-              </a>
-            </div>
           </div>
 
           <div class="bg-white/10 backdrop-blur-lg rounded-3xl p-8">
@@ -700,7 +606,7 @@
                 <textarea rows="4" id="message" name="message" required class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-xl text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50" placeholder="Tell me about your project..."></textarea>
               </div>
               <button type="submit" class="w-full bg-white text-primary-600 py-3 px-6 rounded-xl font-semibold hover:bg-gray-100 transition-colors duration-200">
-                Send Message via Email
+                📧 Send Email
               </button>
             </form>
           </div>
@@ -758,7 +664,7 @@
         </div>
 
         <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-          <p>&copy; 2025 Gabriela Hensky Salaras. All rights reserved.</p>
+          <p>&copy; <span id="currentYear"></span> Gabriela Hensky Salaras. All rights reserved.</p>
         </div>
       </div>
     </footer>
@@ -880,15 +786,15 @@
       <div class="relative w-full max-w-4xl mx-auto">
         <div class="relative bg-white rounded-3xl shadow-2xl">
           <div class="flex justify-between items-start p-6 border-b border-gray-200">
-            <h3 class="text-2xl font-bold text-gray-900">E-Commerce</h3>
-            <button type="button" class="text-gray-400 hover:text-gray-900 p-2" data-modal-hide="modal-project3">
+            <h3 class="text-2xl font-bold text-gray-900">E-Commerce Platform</h3>
+            <button type="button" class="text-gray-400 hover:text-gray-900 p-2" data-modal-hide="modal-project4">
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
               </svg>
             </button>
           </div>
           <div class="p-6 space-y-6">
-            <img src="src/port-4.png" class="w-full rounded-2xl" alt="E-Commerce" />
+            <img src="src/port-4.png" class="w-full rounded-2xl" alt="E-Commerce Platform" />
             <div class="grid md:grid-cols-2 gap-6">
               <div>
                 <h4 class="text-lg font-semibold mb-3">Project Overview</h4>
@@ -912,79 +818,61 @@
     </div>
 
     <script>
-      // Initialize Swiper
-      const swiper = new Swiper('.projectSwiper', {
-        slidesPerView: 1,
-        spaceBetween: 30,
-        loop: true,
-        autoplay: {
-          delay: 5000,
-          disableOnInteraction: false,
-        },
-        pagination: {
-          el: '.swiper-pagination',
-          clickable: true,
-        },
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
-        },
-        breakpoints: {
-          640: {
-            slidesPerView: 1,
-            spaceBetween: 20,
-          },
-          768: {
-            slidesPerView: 2,
-            spaceBetween: 30,
-          },
-          1024: {
-            slidesPerView: 3,
-            spaceBetween: 30,
-          },
-        },
-        on: {
-          slideChange: function () {
-            document.getElementById('currentSlide').textContent = this.realIndex + 1;
-          },
-          init: function () {
-            document.getElementById('totalSlides').textContent = this.slides.length;
-            document.getElementById('currentSlide').textContent = 1;
-            // Update project count in about section
-            document.getElementById('projectCount').textContent = this.slides.length + '+';
-          }
-        }
-      });
+      // Set current year automatically
+      document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-      // Filter functionality
-      const filterButtons = document.querySelectorAll('.filter-btn');
-      const projectSlides = document.querySelectorAll('.swiper-slide');
-
-      filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-          const filter = button.getAttribute('data-filter');
-          
-          // Update active button
-          filterButtons.forEach(btn => {
-            btn.classList.remove('active', 'bg-primary-600', 'text-white');
-            btn.classList.add('bg-gray-200', 'text-gray-700');
-          });
-          button.classList.add('active', 'bg-primary-600', 'text-white');
-          button.classList.remove('bg-gray-200', 'text-gray-700');
-
-          // Filter slides
-          projectSlides.forEach(slide => {
-            const categories = slide.getAttribute('data-category');
-            if (filter === 'all' || categories.includes(filter)) {
-              slide.style.display = 'block';
-            } else {
-              slide.style.display = 'none';
+      // Initialize Swiper with better configuration
+      let swiper;
+      
+      function initSwiper() {
+        swiper = new Swiper('.projectSwiper', {
+          slidesPerView: 1,
+          spaceBetween: 30,
+          loop: true,
+          autoplay: {
+            delay: 5000,
+            disableOnInteraction: false,
+          },
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+          breakpoints: {
+            640: {
+              slidesPerView: 1,
+              spaceBetween: 20,
+            },
+            768: {
+              slidesPerView: 2,
+              spaceBetween: 30,
+            },
+            1024: {
+              slidesPerView: 3,
+              spaceBetween: 30,
+            },
+          },
+          on: {
+            slideChange: function () {
+              document.getElementById('currentSlide').textContent = this.realIndex + 1;
+            },
+            init: function () {
+              const totalSlides = this.slides.length;
+              document.getElementById('totalSlides').textContent = totalSlides;
+              document.getElementById('currentSlide').textContent = 1;
+              // Update project count in about section
+              document.getElementById('projectCount').textContent = totalSlides + '+';
             }
-          });
-
-          // Reinitialize swiper to update visible slides
-          swiper.update();
+          }
         });
+      }
+
+      // Initialize Swiper when DOM is loaded
+      document.addEventListener('DOMContentLoaded', function() {
+        initSwiper();
       });
 
       // Navbar scroll effect
@@ -1035,5 +923,6 @@
         alert('Email client opened! Please send the email from your email application.');
       });
     </script>
+
   </body>
 </html>
