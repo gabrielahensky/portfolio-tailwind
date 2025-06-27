@@ -69,6 +69,7 @@
         background-clip: text;
       }
       .glass-effect {
+        -webkit-backdrop-filter: blur(10px);
         backdrop-filter: blur(10px);
         background: rgba(255, 255, 255, 0.1);
         border: 1px solid rgba(255, 255, 255, 0.2);
@@ -125,53 +126,271 @@
         border-radius: 20px;
         font-size: 14px;
         font-weight: 600;
+        -webkit-backdrop-filter: blur(10px);
         backdrop-filter: blur(10px);
         z-index: 10;
+      }
+
+      /* Animated section headings */
+      .section-heading {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1);
+      }
+      .section-heading.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      /* Skill badge hover effect */
+      .skill-badge {
+        border: 2px solid transparent;
+        transition: box-shadow 0.3s, transform 0.3s, border 0.3s;
+      }
+      .skill-badge:hover {
+        box-shadow: 0 8px 24px rgba(59,130,246,0.15);
+        transform: scale(1.08) rotate(-2deg);
+        border: 2px solid #8b5cf6;
+        background: linear-gradient(135deg, #f0f9ff 60%, #f3e8ff 100%);
+      }
+      /* CTA button pulse */
+      .cta-animate {
+        animation: ctaPulse 2s infinite;
+      }
+      @keyframes ctaPulse {
+        0% { box-shadow: 0 0 0 0 rgba(59,130,246,0.3); }
+        70% { box-shadow: 0 0 0 10px rgba(59,130,246,0); }
+        100% { box-shadow: 0 0 0 0 rgba(59,130,246,0); }
+      }
+      /* Footer gradient */
+      footer.bg-gray-900 {
+        background: linear-gradient(135deg, #1f2937 80%, #8b5cf6 100%);
+      }
+      /* Reveal on scroll */
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px) scale(0.98);
+        transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1);
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+      /* Project card tilt & zoom */
+      .tilt-card {
+        transition: transform 0.2s cubic-bezier(0.4,0,0.2,1), box-shadow 0.2s;
+        will-change: transform;
+      }
+      .tilt-card:hover .tilt-img {
+        transform: scale(1.08) rotate(-1deg);
+      }
+      .tilt-img {
+        transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+      }
+      /* Skill badge bounce & shine */
+      .skill-badge {
+        position: relative;
+        overflow: hidden;
+      }
+      .skill-badge .shine {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(120deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.7) 60%, rgba(255,255,255,0.1) 100%);
+        transform: rotate(25deg) translateX(-100%);
+        transition: transform 0.7s cubic-bezier(0.4,0,0.2,1);
+        pointer-events: none;
+      }
+      .skill-badge:hover .shine {
+        transform: rotate(25deg) translateX(100%);
+      }
+      .skill-badge.bounce {
+        animation: badgeBounce 0.7s;
+      }
+      @keyframes badgeBounce {
+        0% { transform: scale(0.7); }
+        60% { transform: scale(1.15); }
+        100% { transform: scale(1); }
+      }
+      /* Button ripple */
+      .ripple {
+        position: relative;
+        overflow: hidden;
+      }
+      .ripple-effect {
+        position: absolute;
+        border-radius: 50%;
+        transform: scale(0);
+        animation: ripple 0.6s linear;
+        background: rgba(59,130,246,0.3);
+        pointer-events: none;
+      }
+      @keyframes ripple {
+        to {
+          transform: scale(4);
+          opacity: 0;
+        }
+      }
+      /* Modal animation */
+      .modal-anim {
+        opacity: 0;
+        transform: scale(0.95);
+        transition: opacity 0.3s, transform 0.3s;
+      }
+      .modal-anim.visible {
+        opacity: 1;
+        transform: scale(1);
+      }
+      /* Parallax hero */
+      .parallax {
+        will-change: transform;
+        transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+      }
+      .navbar-glass {
+        background: rgba(255,255,255,0.7);
+        -webkit-backdrop-filter: blur(16px);
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid rgba(59,130,246,0.08);
+        box-shadow: 0 4px 24px rgba(59,130,246,0.07);
+        transition: background 0.3s, box-shadow 0.3s;
+      }
+      .navbar-link {
+        position: relative;
+        padding: 0.5rem 1.25rem;
+        border-radius: 9999px;
+        font-weight: 500;
+        transition: color 0.2s;
+        outline: none;
+      }
+      .navbar-link.active, .navbar-link[aria-current="page"] {
+        background: linear-gradient(90deg, #3b82f6 60%, #8b5cf6 100%);
+        color: #fff !important;
+        box-shadow: 0 2px 12px rgba(139,92,246,0.10);
+      }
+      .navbar-link::after {
+        content: '';
+        display: block;
+        position: absolute;
+        left: 1.25rem;
+        right: 1.25rem;
+        bottom: 0.3rem;
+        height: 2px;
+        background: linear-gradient(90deg, #3b82f6 60%, #8b5cf6 100%);
+        border-radius: 2px;
+        opacity: 0;
+        transform: scaleX(0.6);
+        transition: opacity 0.2s, transform 0.2s;
+      }
+      .navbar-link:hover::after, .navbar-link:focus::after {
+        opacity: 1;
+        transform: scaleX(1);
+      }
+      .navbar-link:hover, .navbar-link:focus {
+        color: #3b82f6;
+      }
+      .navbar-link.active::after, .navbar-link[aria-current="page"]::after {
+        opacity: 0;
+      }
+      .navbar-hamburger {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 2.5rem;
+        height: 2.5rem;
+        cursor: pointer;
+        z-index: 60;
+        background: none;
+        border: none;
+        outline: none;
+      }
+      .navbar-hamburger span {
+        display: block;
+        height: 3px;
+        width: 28px;
+        background: #3b82f6;
+        margin: 5px 0;
+        border-radius: 2px;
+        transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+      }
+      .navbar-hamburger.open span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+      }
+      .navbar-hamburger.open span:nth-child(2) {
+        opacity: 0;
+      }
+      .navbar-hamburger.open span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+      }
+      .navbar-mobile {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        background: rgba(255,255,255,0.85);
+        -webkit-backdrop-filter: blur(16px);
+        backdrop-filter: blur(16px);
+        z-index: 50;
+        transform: translateY(-100%);
+        transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+        box-shadow: 0 8px 32px rgba(59,130,246,0.10);
+      }
+      .navbar-mobile.open {
+        transform: translateY(0);
+      }
+      .navbar-mobile-list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2.5rem 0 2rem 0;
+        gap: 1.5rem;
+      }
+      @media (min-width: 768px) {
+        .navbar-hamburger { display: none; }
+        .navbar-mobile { display: none; }
       }
     </style>
   </head>
 
   <body class="bg-white text-gray-800 font-sans">
     <!-- Navbar -->
-    <nav class="fixed w-full z-50 top-0 transition-all duration-300" id="navbar">
+    <nav class="navbar-glass fixed w-full z-50 top-0" id="navbar">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center py-4">
-          <a href="#" class="text-2xl font-bold font-display gradient-text">
+          <a href="index.html" class="text-2xl font-bold font-display gradient-text">
             Gabriela Hensky
           </a>
           
           <!-- Desktop Menu -->
-          <div class="hidden md:flex space-x-8">
-            <a href="#hero" class="text-gray-700 hover:text-primary-600 transition-colors duration-200 font-medium">Home</a>
-            <a href="#about" class="text-gray-700 hover:text-primary-600 transition-colors duration-200 font-medium">About</a>
-            <a href="#skills" class="text-gray-700 hover:text-primary-600 transition-colors duration-200 font-medium">Skills</a>
-            <a href="#projects" class="text-gray-700 hover:text-primary-600 transition-colors duration-200 font-medium">Projects</a>
-            <a href="#contact" class="bg-primary-600 text-white px-6 py-2 rounded-full hover:bg-primary-700 transition-colors duration-200 font-medium">Contact</a>
+          <div class="hidden md:flex space-x-2">
+            <a href="index.html#hero" class="navbar-link" id="nav-home">Home</a>
+            <a href="index.html#about" class="navbar-link" id="nav-about">About</a>
+            <a href="index.html#skills" class="navbar-link" id="nav-skills">Skills</a>
+            <a href="projects.html" class="navbar-link" id="nav-projects">Projects</a>
+            <a href="index.html#contact" class="navbar-link" id="nav-contact">Contact</a>
           </div>
 
-          <!-- Mobile Menu Button -->
-          <button data-collapse-toggle="navbar-default" type="button" class="md:hidden text-gray-700 hover:text-primary-600 p-2">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-            </svg>
+          <!-- Hamburger -->
+          <button class="navbar-hamburger md:hidden" id="navbarHamburger" aria-label="Open menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
           </button>
         </div>
-
-        <!-- Mobile Menu -->
-        <div class="hidden md:hidden pb-4" id="navbar-default">
-          <div class="flex flex-col space-y-3">
-            <a href="#hero" class="text-gray-700 hover:text-primary-600 transition-colors duration-200 font-medium">Home</a>
-            <a href="#about" class="text-gray-700 hover:text-primary-600 transition-colors duration-200 font-medium">About</a>
-            <a href="#skills" class="text-gray-700 hover:text-primary-600 transition-colors duration-200 font-medium">Skills</a>
-            <a href="#projects" class="text-gray-700 hover:text-primary-600 transition-colors duration-200 font-medium">Projects</a>
-            <a href="#contact" class="bg-primary-600 text-white px-6 py-2 rounded-full hover:bg-primary-700 transition-colors duration-200 font-medium text-center">Contact</a>
-          </div>
+      </div>
+      <!-- Mobile Menu -->
+      <div class="navbar-mobile md:hidden" id="navbarMobile">
+        <div class="navbar-mobile-list">
+          <a href="index.html#hero" class="navbar-link" id="navm-home">Home</a>
+          <a href="index.html#about" class="navbar-link" id="navm-about">About</a>
+          <a href="index.html#skills" class="navbar-link" id="navm-skills">Skills</a>
+          <a href="projects.html" class="navbar-link" id="navm-projects">Projects</a>
+          <a href="index.html#contact" class="navbar-link" id="navm-contact">Contact</a>
         </div>
       </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="hero" class="min-h-screen flex items-center bg-gradient-to-br from-gray-50 via-white to-primary-50 pt-20">
+    <section id="hero" class="min-h-screen flex items-center bg-gradient-to-br from-gray-50 via-white to-primary-50 pt-20 reveal">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div class="grid lg:grid-cols-2 gap-12 items-center">
           <!-- Text Content -->
@@ -192,7 +411,7 @@
             </p>
             
             <div class="flex flex-col sm:flex-row gap-4">
-              <a href="#projects" class="bg-primary-600 text-white px-8 py-4 rounded-full hover:bg-primary-700 transition-all duration-200 font-semibold text-center shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+              <a href="#projects" class="bg-primary-600 text-white px-8 py-4 rounded-full hover:bg-primary-700 transition-all duration-200 font-semibold text-center shadow-lg hover:shadow-xl transform hover:-translate-y-1 cta-animate ripple">
                 View My Work
               </a>
               <a href="mailto:gabrielahensky.dev@gmail.com?subject=Let's Work Together&body=Hi Gabriela,%0D%0A%0D%0AI'm interested in working with you on a project.%0D%0A%0D%0APlease let me know your availability.%0D%0A%0D%0AThank you!" class="border-2 border-primary-600 text-primary-600 px-8 py-4 rounded-full hover:bg-primary-600 hover:text-white transition-all duration-200 font-semibold text-center">
@@ -207,8 +426,8 @@
               <div class="w-80 h-80 lg:w-96 lg:h-96 rounded-3xl overflow-hidden shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-300">
                 <img src="src/image.jpg" alt="Gabriela Hensky Salaras" class="w-full h-full object-cover" />
               </div>
-              <div class="absolute -top-4 -right-4 w-24 h-24 bg-accent-500 rounded-full opacity-20 animate-bounce-slow"></div>
-              <div class="absolute -bottom-4 -left-4 w-16 h-16 bg-primary-500 rounded-full opacity-30 animate-bounce-slow" style="animation-delay: 1s;"></div>
+              <div class="absolute -top-4 -right-4 w-24 h-24 bg-accent-500 rounded-full opacity-20 animate-bounce-slow parallax" id="parallax1"></div>
+              <div class="absolute -bottom-4 -left-4 w-16 h-16 bg-primary-500 rounded-full opacity-30 animate-bounce-slow parallax" style="animation-delay: 1s;" id="parallax2"></div>
             </div>
           </div>
         </div>
@@ -216,25 +435,22 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-24 bg-white">
+    <section id="about" class="py-24 bg-white reveal">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
-          <h2 class="text-4xl lg:text-5xl font-bold font-display mb-6">About Me</h2>
+          <h2 class="text-4xl lg:text-5xl font-bold font-display mb-6 section-heading">About Me</h2>
           <div class="w-24 h-1 bg-gradient-to-r from-primary-500 to-accent-500 mx-auto"></div>
         </div>
-
         <div class="grid lg:grid-cols-2 gap-16 items-center">
           <div class="space-y-6">
             <h3 class="text-2xl font-bold font-display text-gray-900">
-              Crafting Digital Solutions with Passion
+              Building Impactful Digital Solutions with Heart
             </h3>
             <p class="text-lg text-gray-600 leading-relaxed">
-              I'm <strong class="text-primary-600">Gabriela Hensky Salaras</strong>, a Full Stack Developer based in Semarang, Indonesia. 
-              With a strong foundation in Laravel and PHP, I specialize in building robust web applications that solve real-world problems.
+              Hi! I'm <strong class="text-primary-600">Gabriela Hensky Salaras</strong>, a passionate Full Stack Developer based in Semarang, Indonesia. My journey in tech started from a deep curiosity and a drive to create real solutions that make a difference. With a strong foundation in Laravel, React, and Next.js, I build web applications that are not only functional but also delightful to use.
             </p>
             <p class="text-lg text-gray-600 leading-relaxed">
-              My journey in web development has led me to create recruitment platforms, invoice tracking systems, and community management tools. 
-              I believe in writing clean, maintainable code and following best practices to deliver exceptional user experiences.
+              I believe technology is a tool to simplify life and open new opportunities. My experience ranges from building recruitment platforms, community finance systems, to e-commerce stores—making me comfortable with diverse business challenges and needs. I always prioritize clean code, collaboration, and delivering a satisfying user experience.
             </p>
             
             <div class="grid grid-cols-2 gap-6 pt-6">
@@ -243,7 +459,7 @@
                 <div class="text-gray-600 font-medium">Years Experience</div>
               </div>
               <div class="text-center p-6 bg-gray-50 rounded-2xl">
-                <div class="text-3xl font-bold text-accent-500 mb-2">10+</div>
+                <div class="text-3xl font-bold text-accent-500 mb-2">20+</div>
                 <div class="text-gray-600 font-medium">Projects Completed</div>
               </div>
             </div>
@@ -259,15 +475,19 @@
                 </div>
                 <div class="flex items-center space-x-3">
                   <div class="w-2 h-2 bg-white rounded-full"></div>
-                  <span>Laravel & PHP Applications</span>
+                  <span>Laravel, Livewire & Filament Apps</span>
                 </div>
                 <div class="flex items-center space-x-3">
                   <div class="w-2 h-2 bg-white rounded-full"></div>
-                  <span>Database Design & Optimization</span>
+                  <span>React & Next.js Frontend</span>
                 </div>
                 <div class="flex items-center space-x-3">
                   <div class="w-2 h-2 bg-white rounded-full"></div>
                   <span>API Development & Integration</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                  <div class="w-2 h-2 bg-white rounded-full"></div>
+                  <span>Database Design & Optimization</span>
                 </div>
                 <div class="flex items-center space-x-3">
                   <div class="w-2 h-2 bg-white rounded-full"></div>
@@ -281,59 +501,98 @@
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="py-24 bg-gray-50">
+    <section id="skills" class="py-24 bg-gray-50 reveal">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
-          <h2 class="text-4xl lg:text-5xl font-bold font-display mb-6">Skills & Technologies</h2>
+          <h2 class="text-4xl lg:text-5xl font-bold font-display mb-6 section-heading">Skills & Technologies</h2>
           <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-            Here are the technologies and tools I use to bring ideas to life
+            Tools & technologies I use to bring ideas to life
           </p>
         </div>
 
         <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-8">
-          <div class="group bg-white p-6 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2">
+          <div class="group bg-white p-6 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2 skill-badge">
+            <span class="shine"></span>
             <div class="flex flex-col items-center text-center">
               <img src="https://cdn.simpleicons.org/laravel/FF2D20" class="w-12 h-12 mb-4 group-hover:scale-110 transition-transform duration-300" alt="Laravel" />
               <h3 class="font-semibold text-gray-900">Laravel</h3>
             </div>
           </div>
 
-          <div class="group bg-white p-6 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2">
+          <div class="group bg-white p-6 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2 skill-badge">
+            <span class="shine"></span>
+            <div class="flex flex-col items-center text-center">
+              <img src="https://cdn.simpleicons.org/livewire/4F32C3" class="w-12 h-12 mb-4 group-hover:scale-110 transition-transform duration-300" alt="Livewire" />
+              <h3 class="font-semibold text-gray-900">Livewire</h3>
+            </div>
+          </div>
+
+          <div class="group bg-white p-6 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2 skill-badge">
+            <span class="shine"></span>
+            <div class="flex flex-col items-center text-center">
+              <img src="https://cdn.simpleicons.org/filament/2E3A59" class="w-12 h-12 mb-4 group-hover:scale-110 transition-transform duration-300" alt="Filament" />
+              <h3 class="font-semibold text-gray-900">Filament</h3>
+            </div>
+          </div>
+
+          <div class="group bg-white p-6 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2 skill-badge">
+            <span class="shine"></span>
+            <div class="flex flex-col items-center text-center">
+              <img src="https://cdn.simpleicons.org/react/61DAFB" class="w-12 h-12 mb-4 group-hover:scale-110 transition-transform duration-300" alt="React" />
+              <h3 class="font-semibold text-gray-900">React</h3>
+            </div>
+          </div>
+
+          <div class="group bg-white p-6 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2 skill-badge">
+            <span class="shine"></span>
+            <div class="flex flex-col items-center text-center">
+              <img src="https://cdn.simpleicons.org/nextdotjs/000000" class="w-12 h-12 mb-4 group-hover:scale-110 transition-transform duration-300" alt="Next.js" />
+              <h3 class="font-semibold text-gray-900">Next.js</h3>
+            </div>
+          </div>
+
+          <div class="group bg-white p-6 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2 skill-badge">
+            <span class="shine"></span>
             <div class="flex flex-col items-center text-center">
               <img src="https://cdn.simpleicons.org/php/777BB4" class="w-12 h-12 mb-4 group-hover:scale-110 transition-transform duration-300" alt="PHP" />
               <h3 class="font-semibold text-gray-900">PHP</h3>
             </div>
           </div>
 
-          <div class="group bg-white p-6 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2">
+          <div class="group bg-white p-6 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2 skill-badge">
+            <span class="shine"></span>
             <div class="flex flex-col items-center text-center">
               <img src="https://cdn.simpleicons.org/tailwindcss/06B6D4" class="w-12 h-12 mb-4 group-hover:scale-110 transition-transform duration-300" alt="Tailwind CSS" />
               <h3 class="font-semibold text-gray-900">Tailwind</h3>
             </div>
           </div>
 
-          <div class="group bg-white p-6 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2">
+          <div class="group bg-white p-6 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2 skill-badge">
+            <span class="shine"></span>
             <div class="flex flex-col items-center text-center">
               <img src="https://cdn.simpleicons.org/javascript/F7DF1E" class="w-12 h-12 mb-4 group-hover:scale-110 transition-transform duration-300" alt="JavaScript" />
               <h3 class="font-semibold text-gray-900">JavaScript</h3>
             </div>
           </div>
 
-          <div class="group bg-white p-6 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2">
+          <div class="group bg-white p-6 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2 skill-badge">
+            <span class="shine"></span>
             <div class="flex flex-col items-center text-center">
               <img src="https://cdn.simpleicons.org/html5/E34F26" class="w-12 h-12 mb-4 group-hover:scale-110 transition-transform duration-300" alt="HTML5" />
               <h3 class="font-semibold text-gray-900">HTML5</h3>
             </div>
           </div>
 
-          <div class="group bg-white p-6 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2">
+          <div class="group bg-white p-6 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2 skill-badge">
+            <span class="shine"></span>
             <div class="flex flex-col items-center text-center">
               <img src="https://cdn.simpleicons.org/css3/1572B6" class="w-12 h-12 mb-4 group-hover:scale-110 transition-transform duration-300" alt="CSS3" />
               <h3 class="font-semibold text-gray-900">CSS3</h3>
             </div>
           </div>
 
-          <div class="group bg-white p-6 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2">
+          <div class="group bg-white p-6 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2 skill-badge">
+            <span class="shine"></span>
             <div class="flex flex-col items-center text-center">
               <img src="https://cdn.simpleicons.org/github/181717" class="w-12 h-12 mb-4 group-hover:scale-110 transition-transform duration-300" alt="GitHub" />
               <h3 class="font-semibold text-gray-900">GitHub</h3>
@@ -344,27 +603,30 @@
     </section>
 
     <!-- Projects Section with Carousel -->
-    <section id="projects" class="py-24 bg-white">
+    <section id="projects" class="py-24 bg-gradient-to-br from-white via-primary-50 to-accent-50 relative reveal">
+      <div class="absolute top-0 left-0 w-72 h-72 bg-gradient-to-br from-primary-200 via-accent-100 to-transparent rounded-full blur-3xl opacity-40 -z-10"></div>
+      <div class="absolute bottom-0 right-0 w-80 h-80 bg-gradient-to-tr from-accent-200 via-primary-100 to-transparent rounded-full blur-3xl opacity-40 -z-10"></div>
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
-          <h2 class="text-4xl lg:text-5xl font-bold font-display mb-6">Featured Projects</h2>
+          <div class="flex justify-center items-center gap-3 mb-2">
+            <svg width="32" height="32" fill="none" viewBox="0 0 24 24"><path d="M12 2v20M2 12h20" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round"/></svg>
+            <h2 class="text-4xl lg:text-5xl font-bold font-display mb-0 section-heading">Featured Projects</h2>
+          </div>
           <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
             Here are some of the projects I've worked on that showcase my skills and experience
           </p>
         </div>
-
         <!-- Swiper Container -->
         <div class="swiper projectSwiper relative">
           <div class="project-counter">
-            <span id="currentSlide">1</span> / <span id="totalSlides">4</span>
+            <span id="currentSlide">1</span> / <span id="totalSlides">8</span>
           </div>
-          
           <div class="swiper-wrapper">
             <!-- Project 1 -->
-            <div class="swiper-slide" data-category="web">
-              <div class="group bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2 mx-4">
+            <div class="swiper-slide tilt-card" data-category="web">
+              <div class="group bg-white/80 backdrop-blur-lg border border-gradient-to-br from-primary-100 to-accent-100 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2 mx-4 glass-effect">
                 <div class="relative overflow-hidden">
-                  <img src="src/port-1.jpeg" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500" alt="Recruitment Platform" />
+                  <img src="src/port-1.jpeg" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500 tilt-img" alt="Recruitment Platform" />
                   <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <div class="absolute top-4 left-4">
                     <span class="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">Web App</span>
@@ -397,12 +659,11 @@
                 </div>
               </div>
             </div>
-
             <!-- Project 2 -->
-            <div class="swiper-slide" data-category="web">
-              <div class="group bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2 mx-4">
+            <div class="swiper-slide tilt-card" data-category="web">
+              <div class="group bg-white/80 backdrop-blur-lg border border-gradient-to-br from-primary-100 to-accent-100 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2 mx-4 glass-effect">
                 <div class="relative overflow-hidden">
-                  <img src="src/port-2.png" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500" alt="Invoice Tracker" />
+                  <img src="src/port-2.png" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500 tilt-img" alt="Invoice Tracker" />
                   <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <div class="absolute top-4 left-4">
                     <span class="bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-medium">Business Tool</span>
@@ -435,12 +696,11 @@
                 </div>
               </div>
             </div>
-
             <!-- Project 3 -->
-            <div class="swiper-slide" data-category="web">
-              <div class="group bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2 mx-4">
+            <div class="swiper-slide tilt-card" data-category="web">
+              <div class="group bg-white/80 backdrop-blur-lg border border-gradient-to-br from-primary-100 to-accent-100 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2 mx-4 glass-effect">
                 <div class="relative overflow-hidden">
-                  <img src="src/port-3.png" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500" alt="Cash Management System" />
+                  <img src="src/port-3.png" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500 tilt-img" alt="Cash Management System" />
                   <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <div class="absolute top-4 left-4">
                     <span class="bg-purple-500 text-white px-3 py-1 rounded-full text-sm font-medium">Community</span>
@@ -473,12 +733,11 @@
                 </div>
               </div>
             </div>
-
-            <!-- Project 4 - E-Commerce Platform -->
-            <div class="swiper-slide" data-category="web">
-              <div class="group bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2 mx-4">
+            <!-- Project 4 -->
+            <div class="swiper-slide tilt-card" data-category="web">
+              <div class="group bg-white/80 backdrop-blur-lg border border-gradient-to-br from-primary-100 to-accent-100 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2 mx-4 glass-effect">
                 <div class="relative overflow-hidden">
-                  <img src="src/port-4.png" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500" alt="E-Commerce Platform" />
+                  <img src="src/port-4.png" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500 tilt-img" alt="E-Commerce Platform" />
                   <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <div class="absolute top-4 left-4">
                     <span class="bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-medium">E-Commerce</span>
@@ -511,19 +770,164 @@
                 </div>
               </div>
             </div>
+            <!-- Dummy Project 5 -->
+            <div class="swiper-slide tilt-card" data-category="web">
+              <div class="group bg-white/80 backdrop-blur-lg border border-gradient-to-br from-primary-100 to-accent-100 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2 mx-4 glass-effect">
+                <div class="relative overflow-hidden">
+                  <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500 tilt-img" alt="Portfolio Redesign" />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div class="absolute top-4 left-4">
+                    <span class="bg-pink-500 text-white px-3 py-1 rounded-full text-sm font-medium">UI/UX</span>
+                  </div>
+                  <div class="absolute bottom-4 left-4 right-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 opacity-0 group-hover:opacity-100">
+                    <div class="flex gap-2">
+                      <button data-modal-target="modal-project5" data-modal-toggle="modal-project5" class="bg-white text-gray-900 px-4 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors duration-200 flex-1">
+                        View Details
+                      </button>
+                      <a href="#" class="bg-primary-600 text-white px-4 py-2 rounded-full font-semibold hover:bg-primary-700 transition-colors duration-200">
+                        Live Demo
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="p-8">
+                  <h3 class="text-2xl font-bold font-display mb-3 text-gray-900">Portfolio Redesign</h3>
+                  <p class="text-gray-600 mb-4 leading-relaxed">
+                    A modern redesign of a personal portfolio website with advanced animation and glassmorphism.
+                  </p>
+                  <div class="flex flex-wrap gap-2 mb-4">
+                    <span class="px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-sm font-medium">React</span>
+                    <span class="px-3 py-1 bg-accent-100 text-accent-700 rounded-full text-sm font-medium">Tailwind</span>
+                    <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">Framer Motion</span>
+                  </div>
+                  <div class="flex items-center justify-between text-sm text-gray-500">
+                    <span>🗓️ Completed: Jan 2024</span>
+                    <span>🎨 Personal Project</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Dummy Project 6 -->
+            <div class="swiper-slide tilt-card" data-category="web">
+              <div class="group bg-white/80 backdrop-blur-lg border border-gradient-to-br from-primary-100 to-accent-100 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2 mx-4 glass-effect">
+                <div class="relative overflow-hidden">
+                  <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500 tilt-img" alt="Chat App" />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div class="absolute top-4 left-4">
+                    <span class="bg-blue-400 text-white px-3 py-1 rounded-full text-sm font-medium">Realtime</span>
+                  </div>
+                  <div class="absolute bottom-4 left-4 right-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 opacity-0 group-hover:opacity-100">
+                    <div class="flex gap-2">
+                      <button data-modal-target="modal-project6" data-modal-toggle="modal-project6" class="bg-white text-gray-900 px-4 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors duration-200 flex-1">
+                        View Details
+                      </button>
+                      <a href="#" class="bg-primary-600 text-white px-4 py-2 rounded-full font-semibold hover:bg-primary-700 transition-colors duration-200">
+                        Live Demo
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="p-8">
+                  <h3 class="text-2xl font-bold font-display mb-3 text-gray-900">Chat App</h3>
+                  <p class="text-gray-600 mb-4 leading-relaxed">
+                    A real-time chat application with group and private messaging, built with Next.js and Firebase.
+                  </p>
+                  <div class="flex flex-wrap gap-2 mb-4">
+                    <span class="px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-sm font-medium">Next.js</span>
+                    <span class="px-3 py-1 bg-accent-100 text-accent-700 rounded-full text-sm font-medium">Firebase</span>
+                    <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">Socket.io</span>
+                  </div>
+                  <div class="flex items-center justify-between text-sm text-gray-500">
+                    <span>🗓️ Completed: Nov 2023</span>
+                    <span>💬 Side Project</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Dummy Project 7 -->
+            <div class="swiper-slide tilt-card" data-category="web">
+              <div class="group bg-white/80 backdrop-blur-lg border border-gradient-to-br from-primary-100 to-accent-100 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2 mx-4 glass-effect">
+                <div class="relative overflow-hidden">
+                  <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500 tilt-img" alt="Landing Page" />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div class="absolute top-4 left-4">
+                    <span class="bg-yellow-400 text-white px-3 py-1 rounded-full text-sm font-medium">Marketing</span>
+                  </div>
+                  <div class="absolute bottom-4 left-4 right-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 opacity-0 group-hover:opacity-100">
+                    <div class="flex gap-2">
+                      <button data-modal-target="modal-project7" data-modal-toggle="modal-project7" class="bg-white text-gray-900 px-4 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors duration-200 flex-1">
+                        View Details
+                      </button>
+                      <a href="#" class="bg-primary-600 text-white px-4 py-2 rounded-full font-semibold hover:bg-primary-700 transition-colors duration-200">
+                        Live Demo
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="p-8">
+                  <h3 class="text-2xl font-bold font-display mb-3 text-gray-900">Landing Page</h3>
+                  <p class="text-gray-600 mb-4 leading-relaxed">
+                    A high-converting landing page for SaaS product, optimized for speed and SEO.
+                  </p>
+                  <div class="flex flex-wrap gap-2 mb-4">
+                    <span class="px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-sm font-medium">HTML5</span>
+                    <span class="px-3 py-1 bg-accent-100 text-accent-700 rounded-full text-sm font-medium">CSS3</span>
+                    <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">SEO</span>
+                  </div>
+                  <div class="flex items-center justify-between text-sm text-gray-500">
+                    <span>🗓️ Completed: Sep 2023</span>
+                    <span>🚀 Freelance</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Dummy Project 8 -->
+            <div class="swiper-slide tilt-card" data-category="web">
+              <div class="group bg-white/80 backdrop-blur-lg border border-gradient-to-br from-primary-100 to-accent-100 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2 mx-4 glass-effect">
+                <div class="relative overflow-hidden">
+                  <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500 tilt-img" alt="Dashboard Analytics" />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div class="absolute top-4 left-4">
+                    <span class="bg-indigo-500 text-white px-3 py-1 rounded-full text-sm font-medium">Analytics</span>
+                  </div>
+                  <div class="absolute bottom-4 left-4 right-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 opacity-0 group-hover:opacity-100">
+                    <div class="flex gap-2">
+                      <button data-modal-target="modal-project8" data-modal-toggle="modal-project8" class="bg-white text-gray-900 px-4 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors duration-200 flex-1">
+                        View Details
+                      </button>
+                      <a href="#" class="bg-primary-600 text-white px-4 py-2 rounded-full font-semibold hover:bg-primary-700 transition-colors duration-200">
+                        Live Demo
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="p-8">
+                  <h3 class="text-2xl font-bold font-display mb-3 text-gray-900">Dashboard Analytics</h3>
+                  <p class="text-gray-600 mb-4 leading-relaxed">
+                    An interactive dashboard for business analytics with real-time data visualization.
+                  </p>
+                  <div class="flex flex-wrap gap-2 mb-4">
+                    <span class="px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-sm font-medium">Filament</span>
+                    <span class="px-3 py-1 bg-accent-100 text-accent-700 rounded-full text-sm font-medium">Livewire</span>
+                    <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">Chart.js</span>
+                  </div>
+                  <div class="flex items-center justify-between text-sm text-gray-500">
+                    <span>🗓️ Completed: May 2023</span>
+                    <span>📊 Client Project</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          
           <!-- Navigation buttons -->
           <div class="swiper-button-next"></div>
           <div class="swiper-button-prev"></div>
-          
           <!-- Pagination -->
           <div class="swiper-pagination mt-12"></div>
         </div>
-
         <!-- View All Projects Button -->
         <div class="text-center mt-12">
-          <a href="#" class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-600 to-accent-600 text-white rounded-full font-semibold hover:from-primary-700 hover:to-accent-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+          <a href="projects.html" class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-600 to-accent-600 text-white rounded-full font-semibold hover:from-primary-700 hover:to-accent-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1 cta-animate ripple">
             <span>View All Projects</span>
             <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
@@ -534,10 +938,10 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-24 bg-gradient-to-br from-primary-600 to-accent-600 text-white">
+    <section id="contact" class="py-24 bg-gradient-to-br from-primary-600 to-accent-600 text-white reveal">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
-          <h2 class="text-4xl lg:text-5xl font-bold font-display mb-6">Let's Work Together</h2>
+          <h2 class="text-4xl lg:text-5xl font-bold font-display mb-6 section-heading">Let's Work Together</h2>
           <p class="text-xl text-primary-100 max-w-3xl mx-auto">
             Ready to bring your ideas to life? I'm always excited to work on new projects and challenges.
           </p>
@@ -624,12 +1028,12 @@
               Full Stack Developer passionate about creating exceptional web experiences with clean code and innovative solutions.
             </p>
             <div class="flex space-x-4">
-              <a href="https://linkedin.com/in/gabrielahenskysalaras" target="_blank" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors duration-200">
+              <a href="https://linkedin.com/in/gabrielahenskysalaras" target="_blank" rel="noopener" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors duration-200">
                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
                 </svg>
               </a>
-              <a href="https://github.com/gabrielahensky" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors duration-200">
+              <a href="https://github.com/gabrielahensky" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors duration-200" target="_blank" rel="noopener">
                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                 </svg>
@@ -676,7 +1080,7 @@
         <div class="relative bg-white rounded-3xl shadow-2xl">
           <div class="flex justify-between items-start p-6 border-b border-gray-200">
             <h3 class="text-2xl font-bold text-gray-900">Recruitment Platform</h3>
-            <button type="button" class="text-gray-400 hover:text-gray-900 p-2" data-modal-hide="modal-project1">
+            <button type="button" class="text-gray-400 hover:text-gray-900 p-2" data-modal-hide="modal-project1" title="Close modal">
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
               </svg>
@@ -713,7 +1117,7 @@
         <div class="relative bg-white rounded-3xl shadow-2xl">
           <div class="flex justify-between items-start p-6 border-b border-gray-200">
             <h3 class="text-2xl font-bold text-gray-900">Invoice Tracker</h3>
-            <button type="button" class="text-gray-400 hover:text-gray-900 p-2" data-modal-hide="modal-project2">
+            <button type="button" class="text-gray-400 hover:text-gray-900 p-2" data-modal-hide="modal-project2" title="Close modal">
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
               </svg>
@@ -750,7 +1154,7 @@
         <div class="relative bg-white rounded-3xl shadow-2xl">
           <div class="flex justify-between items-start p-6 border-b border-gray-200">
             <h3 class="text-2xl font-bold text-gray-900">Cash Management System</h3>
-            <button type="button" class="text-gray-400 hover:text-gray-900 p-2" data-modal-hide="modal-project3">
+            <button type="button" class="text-gray-400 hover:text-gray-900 p-2" data-modal-hide="modal-project3" title="Close modal">
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
               </svg>
@@ -787,7 +1191,7 @@
         <div class="relative bg-white rounded-3xl shadow-2xl">
           <div class="flex justify-between items-start p-6 border-b border-gray-200">
             <h3 class="text-2xl font-bold text-gray-900">E-Commerce Platform</h3>
-            <button type="button" class="text-gray-400 hover:text-gray-900 p-2" data-modal-hide="modal-project4">
+            <button type="button" class="text-gray-400 hover:text-gray-900 p-2" data-modal-hide="modal-project4" title="Close modal">
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
               </svg>
@@ -806,9 +1210,148 @@
                 <h4 class="text-lg font-semibold mb-3">Technologies Used</h4>
                 <div class="flex flex-wrap gap-2">
                   <span class="px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-sm">Django</span>
-                  <span class="px-3 py-1 bg-accent-100 text-accent-700 rounded-full text-sm">Python</span>
-                  <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">MySQL</span>
-                  <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">Bootstrap</span>
+                  <span class="px-3 py-1 bg-accent-100 text-accent-700 rounded-full text-sm font-medium">Python</span>
+                  <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">Bootstrap</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Project 5 -->
+    <div id="modal-project5" tabindex="-1" class="hidden fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto h-[calc(100%-1rem)] max-h-full">
+      <div class="relative w-full max-w-4xl mx-auto">
+        <div class="relative bg-white rounded-3xl shadow-2xl">
+          <div class="flex justify-between items-start p-6 border-b border-gray-200">
+            <h3 class="text-2xl font-bold text-gray-900">Portfolio Redesign</h3>
+            <button type="button" class="text-gray-400 hover:text-gray-900 p-2" data-modal-hide="modal-project5" title="Close modal">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+              </svg>
+            </button>
+          </div>
+          <div class="p-6 space-y-6">
+            <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80" class="w-full rounded-2xl" alt="Portfolio Redesign" />
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <h4 class="text-lg font-semibold mb-3">Project Overview</h4>
+                <p class="text-gray-600 leading-relaxed">
+                  A modern redesign of a personal portfolio website with advanced animation and glassmorphism.
+                </p>
+              </div>
+              <div>
+                <h4 class="text-lg font-semibold mb-3">Technologies Used</h4>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-sm font-medium">React</span>
+                  <span class="px-3 py-1 bg-accent-100 text-accent-700 rounded-full text-sm font-medium">Tailwind</span>
+                  <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">Framer Motion</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Project 6 -->
+    <div id="modal-project6" tabindex="-1" class="hidden fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto h-[calc(100%-1rem)] max-h-full">
+      <div class="relative w-full max-w-4xl mx-auto">
+        <div class="relative bg-white rounded-3xl shadow-2xl">
+          <div class="flex justify-between items-start p-6 border-b border-gray-200">
+            <h3 class="text-2xl font-bold text-gray-900">Chat App</h3>
+            <button type="button" class="text-gray-400 hover:text-gray-900 p-2" data-modal-hide="modal-project6" title="Close modal">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+              </svg>
+            </button>
+          </div>
+          <div class="p-6 space-y-6">
+            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80" class="w-full rounded-2xl" alt="Chat App" />
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <h4 class="text-lg font-semibold mb-3">Project Overview</h4>
+                <p class="text-gray-600 leading-relaxed">
+                  A real-time chat application with group and private messaging, built with Next.js and Firebase.
+                </p>
+              </div>
+              <div>
+                <h4 class="text-lg font-semibold mb-3">Technologies Used</h4>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-sm font-medium">Next.js</span>
+                  <span class="px-3 py-1 bg-accent-100 text-accent-700 rounded-full text-sm font-medium">Firebase</span>
+                  <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">Socket.io</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Project 7 -->
+    <div id="modal-project7" tabindex="-1" class="hidden fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto h-[calc(100%-1rem)] max-h-full">
+      <div class="relative w-full max-w-4xl mx-auto">
+        <div class="relative bg-white rounded-3xl shadow-2xl">
+          <div class="flex justify-between items-start p-6 border-b border-gray-200">
+            <h3 class="text-2xl font-bold text-gray-900">Landing Page</h3>
+            <button type="button" class="text-gray-400 hover:text-gray-900 p-2" data-modal-hide="modal-project7" title="Close modal">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+              </svg>
+            </button>
+          </div>
+          <div class="p-6 space-y-6">
+            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" class="w-full rounded-2xl" alt="Landing Page" />
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <h4 class="text-lg font-semibold mb-3">Project Overview</h4>
+                <p class="text-gray-600 leading-relaxed">
+                  A high-converting landing page for SaaS product, optimized for speed and SEO.
+                </p>
+              </div>
+              <div>
+                <h4 class="text-lg font-semibold mb-3">Technologies Used</h4>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-sm font-medium">HTML5</span>
+                  <span class="px-3 py-1 bg-accent-100 text-accent-700 rounded-full text-sm font-medium">CSS3</span>
+                  <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">SEO</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Project 8 -->
+    <div id="modal-project8" tabindex="-1" class="hidden fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto h-[calc(100%-1rem)] max-h-full">
+      <div class="relative w-full max-w-4xl mx-auto">
+        <div class="relative bg-white rounded-3xl shadow-2xl">
+          <div class="flex justify-between items-start p-6 border-b border-gray-200">
+            <h3 class="text-2xl font-bold text-gray-900">Dashboard Analytics</h3>
+            <button type="button" class="text-gray-400 hover:text-gray-900 p-2" data-modal-hide="modal-project8" title="Close modal">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+              </svg>
+            </button>
+          </div>
+          <div class="p-6 space-y-6">
+            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80" class="w-full rounded-2xl" alt="Dashboard Analytics" />
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <h4 class="text-lg font-semibold mb-3">Project Overview</h4>
+                <p class="text-gray-600 leading-relaxed">
+                  An interactive dashboard for business analytics with real-time data visualization.
+                </p>
+              </div>
+              <div>
+                <h4 class="text-lg font-semibold mb-3">Technologies Used</h4>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-sm font-medium">Filament</span>
+                  <span class="px-3 py-1 bg-accent-100 text-accent-700 rounded-full text-sm font-medium">Livewire</span>
+                  <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">Chart.js</span>
                 </div>
               </div>
             </div>
@@ -922,6 +1465,143 @@
         // Show success message
         alert('Email client opened! Please send the email from your email application.');
       });
+
+      // Section heading animation
+      document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.section-heading').forEach(function(el, i) {
+          setTimeout(() => {
+            el.classList.add('visible');
+          }, 200 + i * 150);
+        });
+      });
+
+      // Reveal on scroll
+      const revealEls = document.querySelectorAll('.reveal, .skill-badge, .tilt-card');
+      const revealObs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            if (entry.target.classList.contains('skill-badge')) {
+              entry.target.classList.add('bounce');
+              setTimeout(() => entry.target.classList.remove('bounce'), 800);
+            }
+            revealObs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      revealEls.forEach(el => revealObs.observe(el));
+
+      // Parallax effect on hero blobs
+      document.addEventListener('mousemove', function(e) {
+        const x = (e.clientX / window.innerWidth - 0.5) * 30;
+        const y = (e.clientY / window.innerHeight - 0.5) * 30;
+        const p1 = document.getElementById('parallax1');
+        const p2 = document.getElementById('parallax2');
+        if (p1 && p2) {
+          p1.style.transform = `translate(${x}px, ${y}px)`;
+          p2.style.transform = `translate(${-x}px, ${-y}px)`;
+        }
+      });
+
+      // Tilt effect for project cards
+      document.querySelectorAll('.tilt-card').forEach(card => {
+        card.addEventListener('mousemove', function(e) {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          const rotateX = ((y - centerY) / centerY) * 6;
+          const rotateY = ((x - centerX) / centerX) * 6;
+          card.style.transform = `rotateX(${-rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+        card.addEventListener('mouseleave', function() {
+          card.style.transform = '';
+        });
+      });
+
+      // Ripple effect for buttons
+      document.querySelectorAll('.ripple').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          const circle = document.createElement('span');
+          circle.className = 'ripple-effect';
+          const rect = btn.getBoundingClientRect();
+          circle.style.width = circle.style.height = Math.max(rect.width, rect.height) + 'px';
+          circle.style.left = (e.clientX - rect.left - rect.width/2) + rect.width/2 + 'px';
+          circle.style.top = (e.clientY - rect.top - rect.height/2) + rect.height/2 + 'px';
+          btn.appendChild(circle);
+          setTimeout(() => circle.remove(), 600);
+        });
+      });
+
+      // Modal animation
+      document.querySelectorAll('[id^="modal-project"]').forEach(modal => {
+        modal.addEventListener('show.bs.modal', function() {
+          const box = modal.querySelector('.relative.bg-white');
+          if (box) box.classList.add('modal-anim', 'visible');
+        });
+        modal.addEventListener('hide.bs.modal', function() {
+          const box = modal.querySelector('.relative.bg-white');
+          if (box) box.classList.remove('visible');
+        });
+      });
+
+      // Navbar hamburger & mobile menu
+      const hamburger = document.getElementById('navbarHamburger');
+      const mobileMenu = document.getElementById('navbarMobile');
+      hamburger.addEventListener('click', function() {
+        hamburger.classList.toggle('open');
+        mobileMenu.classList.toggle('open');
+        hamburger.setAttribute('aria-expanded', hamburger.classList.contains('open'));
+      });
+      document.querySelectorAll('.navbar-mobile .navbar-link').forEach(link => {
+        link.addEventListener('click', () => {
+          hamburger.classList.remove('open');
+          mobileMenu.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+        });
+      });
+      // Active menu pill logic
+      function setActiveNav() {
+        const path = window.location.pathname.split('/').pop();
+        const hash = window.location.hash;
+        const navs = [
+          {id: 'nav-home', hash: '#hero'},
+          {id: 'nav-about', hash: '#about'},
+          {id: 'nav-skills', hash: '#skills'},
+          {id: 'nav-projects', hash: ''},
+          {id: 'nav-contact', hash: '#contact'}
+        ];
+        navs.forEach(nav => {
+          const el = document.getElementById(nav.id);
+          if (!el) return;
+          el.classList.remove('active');
+          if ((nav.id === 'nav-projects' && path === 'projects.html') ||
+              (nav.hash && window.location.href.includes(nav.hash) && path !== 'projects.html')) {
+            el.classList.add('active');
+          }
+        });
+        // Mobile
+        const navsm = [
+          {id: 'navm-home', hash: '#hero'},
+          {id: 'navm-about', hash: '#about'},
+          {id: 'navm-skills', hash: '#skills'},
+          {id: 'navm-projects', hash: ''},
+          {id: 'navm-contact', hash: '#contact'}
+        ];
+        navsm.forEach(nav => {
+          const el = document.getElementById(nav.id);
+          if (!el) return;
+          el.classList.remove('active');
+          if ((nav.id === 'navm-projects' && path === 'projects.html') ||
+              (nav.hash && window.location.href.includes(nav.hash) && path !== 'projects.html')) {
+            el.classList.add('active');
+          }
+        });
+      }
+      setActiveNav();
+      window.addEventListener('hashchange', setActiveNav);
+      window.addEventListener('popstate', setActiveNav);
     </script>
 
   </body>
